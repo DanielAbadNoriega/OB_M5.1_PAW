@@ -1,23 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [newItem, setNewItem] = useState("");
+  const [items, setItems] = useState([]);
+
+  const setListItems = () => {
+    setItems([...items, newItem]);
+    setNewItem("");
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>** Proyecto PWA - Lista de la compra **</h1>
+        <input
+          style={{ fontSize: 24, borderRadius: "5px", padding: "10px 20px" }}
+          type="text"
+          onChange={(e) => setNewItem(e.target.value)}
+          value={newItem}
+          placeholder="Set new item"
+        />
+        <button style={{ fontSize: 24, borderRadius: 5, padding: "10px 20px" }} onClick={() => setListItems()}>
+          Añadir
+        </button>
+
+        <h2>Items</h2>
+        <ul>
+          {items.length ? (
+            items.map((item, index) => <li key={index}>{item}</li>)
+          ) : (
+            <p>No hay items</p>
+          )}
+        </ul>
       </header>
     </div>
   );
