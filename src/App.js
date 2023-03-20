@@ -8,7 +8,7 @@ function App() {
   const setListItems = () => {
     setItems([...items, newItem]);
     setNewItem("");
-  }
+  };
 
   return (
     <div className="App">
@@ -17,11 +17,15 @@ function App() {
         <input
           style={{ fontSize: 24, borderRadius: "5px", padding: "10px 20px" }}
           type="text"
+          onKeyDown={(e) => e.key === "Enter" && setListItems()}
           onChange={(e) => setNewItem(e.target.value)}
           value={newItem}
           placeholder="Set new item"
         />
-        <button style={{ fontSize: 24, borderRadius: 5, padding: "10px 20px" }} onClick={() => setListItems()}>
+        <button
+          style={{ fontSize: 24, borderRadius: 5, padding: "10px 20px" }}
+          onClick={() => setListItems()}
+        >
           Añadir
         </button>
 
